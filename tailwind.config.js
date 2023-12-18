@@ -6,6 +6,7 @@ export default {
 			colors: {
 				bgMainColor: '#EFEFEF',
 				base: '#3652E1',
+				baseHover: '#2F4ACF',
 				primary: '#1c1c1c',
 				secondary: '#424242',
 			},

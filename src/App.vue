@@ -1,10 +1,12 @@
-<script setup></script>
+<script setup>
+import Header from '@/components/Header.vue'
+</script>
 
 <template>
-	<h1>Main</h1>
-	<h1 class="text-base">h1</h1>
-	<h2 class="text-primary">h2</h2>
-	<h3 class="text-secondary">h3</h3>
+	<Header />
+	<div class="container mx-auto">
+		<router-view />
+	</div>
 </template>
 
 <style scoped></style>
