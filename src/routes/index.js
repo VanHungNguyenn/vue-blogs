@@ -1,5 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import NotFound from '@/views/NotFound.vue'
+import { auth } from '@/configs/firebase'
+
+// auth guards
+const requireAuth = (to, from, next) => {
+	const user = auth.currentUser
+
+	if (!user) {
+		next({
+			name: 'Login',
+			params: {},
+		})
+	} else {
+		next()
+	}
+}
+
+const requireNoAuth = (to, from, next) => {
+	const user = auth.currentUser
+
+	if (user) {
+		next({
+			name: 'Home',
+			params: {},
+		})
+	} else {
+		next()
+	}
+}
 
 const routes = [
 	{
@@ -31,24 +59,28 @@ const routes = [
 		name: 'Login',
 		component: () =>
 			import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+		beforeEnter: requireNoAuth,
 	},
 	{
 		path: '/register',
 		name: 'Register',
 		component: () =>
 			import(/* webpackChunkName: "register" */ '../views/Register.vue'),
+		beforeEnter: requireNoAuth,
 	},
 	{
 		path: '/profile',
 		name: 'Profile',
 		component: () =>
 			import(/* webpackChunkName: "profile" */ '../views/Profile.vue'),
+		beforeEnter: requireAuth,
 	},
 	{
 		path: '/logout',
 		name: 'Logout',
 		component: () =>
 			import(/* webpackChunkName: "logout" */ '../views/Logout.vue'),
+		beforeEnter: requireAuth,
 	},
 	{
 		path: '/:pathMatch(.*)*',

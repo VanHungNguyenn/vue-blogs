@@ -45,11 +45,12 @@
 								v-if="user"
 								class="flex items-center space-x-2 cursor-pointer"
 							>
-								<span class="text-base font-semibold"
-									>VanHungNguyen</span
-								>
+								<span class="text-base font-semibold">{{
+									user.displayName
+								}}</span>
+								<!-- user.photoURL or @/assets/images/avatar.jpg -->
 								<img
-									src="@/assets/images/logo.jpg"
+									:src="getImageUrl(user.photoURL)"
 									alt="avatar"
 									class="w-10 h-10 rounded-full"
 								/>
@@ -113,6 +114,7 @@ import { reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUser } from '@/composables/useUser'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import avatarDefault from '@/assets/images/avatar.jpg'
 
 const navItems = reactive(NAV_ITEMS)
 
@@ -123,6 +125,10 @@ const isActiveRoute = (name) => {
 
 const { getUser } = useUser()
 const { user } = getUser()
+
+const getImageUrl = (url) => {
+	return url || avatarDefault
+}
 </script>
 
 <style scoped>
