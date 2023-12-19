@@ -26,10 +26,19 @@
 				</label>
 			</div>
 			<div class="row">
-				<button type="submit" class="button w-full">Login</button>
+				<button
+					type="submit"
+					:disabled="isPending"
+					:class="[
+						'button w-full',
+						isPending && 'cursor-not-allowed',
+					]"
+				>
+					Login
+				</button>
 			</div>
 		</form>
-		<div class="w-full text-left mt-4 text-red-800" v-if="error">
+		<div class="w-full text-left mt-4 text-red-600" v-if="error">
 			<span>{{ error }}</span>
 		</div>
 		<!-- Direction -->
@@ -48,14 +57,27 @@
 
 <script setup>
 import AuthLayout from '@/components/layouts/AuthLayout.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useLogin } from '../composables/useLogin'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const email = ref('')
 const password = ref('')
-const error = ref('')
 
-const onSubmit = () => {
-	console.log('submit')
+const { error, isPending, login } = useLogin()
+
+watch([email, password], () => {
+	error.value = null
+})
+
+const onSubmit = async () => {
+	await login(email.value, password.value)
+
+	if (!error.value) {
+		await router.push({ name: 'Home' })
+	}
 }
 </script>
 

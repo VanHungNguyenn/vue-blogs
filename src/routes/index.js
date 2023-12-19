@@ -39,6 +39,18 @@ const routes = [
 			import(/* webpackChunkName: "register" */ '../views/Register.vue'),
 	},
 	{
+		path: '/profile',
+		name: 'Profile',
+		component: () =>
+			import(/* webpackChunkName: "profile" */ '../views/Profile.vue'),
+	},
+	{
+		path: '/logout',
+		name: 'Logout',
+		component: () =>
+			import(/* webpackChunkName: "logout" */ '../views/Logout.vue'),
+	},
+	{
 		path: '/:pathMatch(.*)*',
 		component: NotFound,
 	},

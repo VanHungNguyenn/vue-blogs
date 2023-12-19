@@ -38,10 +38,19 @@
 				</label>
 			</div>
 			<div class="row">
-				<button type="submit" class="button w-full">Register</button>
+				<button
+					type="submit"
+					:disabled="isPending"
+					:class="[
+						'button w-full',
+						isPending && 'cursor-not-allowed',
+					]"
+				>
+					Register
+				</button>
 			</div>
 		</form>
-		<div class="w-full text-left mt-4 text-red-800" v-if="error">
+		<div class="w-full text-left mt-4 text-red-600" v-if="error">
 			<span>{{ error }}</span>
 		</div>
 		<!-- Direction -->
@@ -60,15 +69,28 @@
 
 <script setup>
 import AuthLayout from '@/components/layouts/AuthLayout.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRegister } from '../composables/useRegister'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const fullName = ref('')
 const email = ref('')
 const password = ref('')
-const error = ref('')
 
-const onSubmit = () => {
-	console.log('submit')
+const { error, isPending, register } = useRegister()
+
+watch([fullName, email, password], () => {
+	error.value = null
+})
+
+const onSubmit = async () => {
+	await register(email.value, password.value, fullName.value)
+
+	if (!error.value) {
+		router.push({ name: 'Login', params: {} })
+	}
 }
 </script>
 
