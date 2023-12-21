@@ -34,4 +34,4 @@ const useStorage = (name) => {
 	return { error, filePath, url, uploadFile }
 }
 
-export default useStorage
+export { useStorage }

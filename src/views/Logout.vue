@@ -1,3 +1,5 @@
+<template></template>
+
 <script setup>
 import { useLogout } from '@/composables/useLogout'
 import { useRouter } from 'vue-router'

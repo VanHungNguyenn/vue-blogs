@@ -76,6 +76,13 @@ const routes = [
 		beforeEnter: requireAuth,
 	},
 	{
+		path: '/create-blog',
+		name: 'Create',
+		component: () =>
+			import(/* webpackChunkName: "create" */ '../views/CreateBlog.vue'),
+		beforeEnter: requireAuth,
+	},
+	{
 		path: '/logout',
 		name: 'Logout',
 		component: () =>

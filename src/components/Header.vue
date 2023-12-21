@@ -84,6 +84,22 @@
 									</MenuItem>
 								</div>
 							</router-link>
+							<router-link :to="{ name: 'Create', params: {} }">
+								<div class="px-1 py-1">
+									<MenuItem v-slot="{ active }">
+										<button
+											:class="[
+												active
+													? 'bg-base text-white'
+													: 'text-gray-900',
+												'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+											]"
+										>
+											Create new blog
+										</button>
+									</MenuItem>
+								</div>
+							</router-link>
 							<router-link :to="{ name: 'Logout', params: {} }">
 								<div class="px-1 py-1">
 									<MenuItem v-slot="{ active }">
