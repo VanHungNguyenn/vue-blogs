@@ -83,6 +83,13 @@ const routes = [
 		beforeEnter: requireAuth,
 	},
 	{
+		path: '/manage-blogs',
+		name: 'Manage Blogs',
+		component: () =>
+			import(/* webpackChunkName: "manage" */ '../views/ManageBlogs.vue'),
+		beforeEnter: requireAuth,
+	},
+	{
 		path: '/logout',
 		name: 'Logout',
 		component: () =>

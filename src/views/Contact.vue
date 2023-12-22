@@ -21,8 +21,9 @@
 					Contact
 				</h2>
 				<p class="text-gray-500 text-lg mb-4">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Quisquam, voluptatum.
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+					Quas illum laboriosam minima error ullam eaque iusto dolorem
+					nostrum velit nesciunt?
 				</p>
 				<div>
 					<input
